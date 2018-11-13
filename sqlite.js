@@ -34,8 +34,10 @@ config.forEach(entry => {
   originalFns[prototype + "." + fn] = originalFn;
 });
 
+let promiseEnabled = false;
 function enablePromiseRuntime(enable){
-  if (enable){
+  if (enable && !promiseEnabled){
+    promiseEnabled = true;
     createPromiseRuntime();
   } else {
     createCallbackRuntime();
